@@ -15,7 +15,7 @@ import axios from 'axios';
 //import cylinderdata from "./assets/cylinderdata"
 
 const LOCALE = 'en';
-const API_URI = "http://localhost:3000";
+const API_URI = import.meta.env.VITE_API_URL;
 
 function App() {
 
