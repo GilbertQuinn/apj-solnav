@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+  font-family: var(--font-family-base-dnvic8, "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif);
+}
+
+#root {
+  margin: 0 auto;
+  padding: 0rem;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background: linear-gradient(90deg, #192534 1.18%, #0f1b2a 100%);
+  color: white;
+  padding: 15px;
+}
+
+.topbar-filter {
+  height: 40px;
+  padding: 5px;
+  justify-content: space-between;
+}
+
+.topbar-image {
+  height: 50%;
+  margin-right: 15px;
+}
+
+.topbar-title {
+  font-size: 1.25rem;
+  margin-right: auto;
+}
+
+.card-columns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .card-columns {
+    display: inline-block;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.cards-list {
+  display: box;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.card {
+  min-width: 75px;
+  font-size: 12px;
+  flex: 0 0 auto;         /* ADD */
+  display: flex;          /* ADD */
+  flex-direction: column; /* ADD */
+  position: relative;
+  background-color: whitesmoke;
+  border-radius: 9px;
+  margin-bottom: 9px;
+  text-align: center;
+  border: 2px Solid #033160;
+  cursor:pointer;
+}
+
+.cardHeader {
+  background-color: #033160;
+  color: white;
+  padding: 5px;
+}
+
+.image-solution-logo-container {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-solution-logo {
+  max-height: 75px;
+  max-width: 125px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.card-links {
+  margin: 0 auto;
+  padding-bottom: 15px;
+  font-size: smaller;
+}
+
+.card-cylinder-box, .card-cylinder-box-disabled {
+  width: 22px;
+  height: 22px;
+  background-color: #192534;
+  color: white;
+  border-radius: 5px;
+  margin: 3px;
+  display: inline-flex;
+  border: 1px Solid white;
+}
+
+.card-cylinder-box-disabled {
+  background-color: #414d5c;
+  color: #b6bec9;
+}
+
+.card-h2 {
+  margin: 0 auto;
+  font-size: small;
+  margin-top: 2px;
+}
+
+.modal-content-main {
+  display: box;
+  color:#414d5c;
+}
+
+.modal-content-row {
+  display: flex;
+}
+
+.modal-content-column {
+  flex: 1 1 0;
+}
+
+.modal-content-column-narrow {
+  width: 20%;
+}
+
+.modal-content-main-group {
+  margin: 5px;
+  background-color: whitesmoke;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.modal-content_centerall {
+  text-align: center;
+}
