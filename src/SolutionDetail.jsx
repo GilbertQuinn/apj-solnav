@@ -24,7 +24,7 @@ function SolutionDetail(props) {
         return references.map(reference => {
             return <div key={reference.name}>
                     <p>
-                        <strong><a href={reference.url}>{reference.name}</a></strong><br />
+                        <strong><a href={reference.url} target="_blank">{reference.name}</a></strong><br />
                         {reference.description}<br />
                     </p>
                 </div>
