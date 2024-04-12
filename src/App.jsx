@@ -28,6 +28,9 @@ function App() {
   const [visible, setVisible] = React.useState(false);
   const prevSelectedSolutionId = React.useRef(selectedSolutionId);
 
+  const [industries, setIndustries] = React.useState([])
+  const [selectedIndustries, setSelectedIndustries] = React.useState([])
+
   //Lookup data
   const [cylinderData, setCylinderData] = React.useState([])
   const [themedata, setThemeData] = React.useState([])
@@ -57,6 +60,21 @@ function App() {
     fetchDataSequentially();
   }, []);
 
+  //Create a unique list of industries from the solutions data
+  React.useEffect(() => {
+    const uniqueIndustries = []
+    for (let i = 0; i < solutions.length; i++) {
+      let industries = solutions[i].industries
+      for (let j = 0; j < industries.length; j++) {
+        let industryItem = industries[j]
+        if (!uniqueIndustries.includes(industryItem)) {
+          uniqueIndustries.push(industryItem)
+        }
+      }
+    }
+    setIndustries(uniqueIndustries)
+  }, [solutions])
+
   //create simple cylinder filter from cylinder data
   React.useEffect(() => {
     const cylinders = cylinderData.map(cylinder => cylinder.num)
@@ -69,13 +87,17 @@ function App() {
       const selectedSolution = solutions.find(solution => solution._id === selectedSolutionId)
       selectedSolution && setSelectedSolution(selectedSolution)
       setVisible(true)
-      console.log("selected")
     }
   }, [selectedSolutionId, solutions])
 
   //Filter out cards by the selected cylinder
   function cardInFilter(cardCylinders) {
     return cardCylinders.some(item => cylinderFilter.includes(item))
+  }
+
+  //Filter out cards by selected industry
+   function cardInIndustry(cardIndustries) {
+    return (selectedIndustries.length == 0) || (selectedIndustries.some(item => cardIndustries.includes(item.value)))
   }
 
   //Generate the columns for each gtmTheme
@@ -111,21 +133,21 @@ function App() {
     }
   }
 
-
   //Generate all cards for a specific theme including the cylinder filters
   function solutionCards(gtmTheme) {
     const solutionCards = solutions.map((solution) => {
       const divKey = solution._id + gtmTheme
       return cardInFilter(solution.scaleCylinder)
-      &&
-      solution.gtmTheme.includes(gtmTheme)
-      &&
-      <SolutionCard key={divKey} solution={solution} setSolutionId={setSelectedSolutionID}></SolutionCard>
+        &&
+        solution.gtmTheme.includes(gtmTheme)
+        &&
+        cardInIndustry(solution.industries)
+        &&
+        <SolutionCard key={divKey} solution={solution} setSolutionId={setSelectedSolutionID}></SolutionCard>
     })
     return solutionCards
   }
 
-  
   //Close the detail view
   const closeModel = () => {
     setSelectedSolutionID()
@@ -137,7 +159,7 @@ function App() {
 
     <I18nProvider locale={LOCALE} messages={[messages]}>
       <TopBar></TopBar>
-      <FilterBar onFilterClick={setSelectedFilter} cylinderData={cylinderData} selectedFilter={cylinderFilter}></FilterBar>
+      <FilterBar onFilterClick={setSelectedFilter} cylinderData={cylinderData} selectedFilter={cylinderFilter} industries={industries} setSelectedIndustries={setSelectedIndustries}></FilterBar>
 
       <ContentLayout>
         <Container>
