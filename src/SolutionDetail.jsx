@@ -59,15 +59,18 @@ function SolutionDetail(props) {
         <section className="modal-content-main">
             <div className="modal-content-row modal-content-main-group">
                 <div className="modal-content-column-narrow ">
-                <div className="image-solution-logo-container">
-                    <img src={getImageURL(solution.logoImage)} className="image-solution-logo" />
-                </div>
+                    <div className="image-solution-logo-container">
+                        <img src={getImageURL(solution.logoImage)} className="image-solution-logo" />
+                    </div>
                 </div>
                 <div className="modal-content-column">
                     <a href={solution.officialURL} target="_blank">{solution.officialURL}</a><br/>
                     <a href={solution.marketPlaceURL} target="_blank">AWS MarketPlace</a><br/>
                     <a href={solution.solutionsURL} target="_blank">AWS Solution</a><br/>
                     <a href={solution.blueprintURL} target="_blank">CSC Blueprint</a><br/>
+                </div>
+                <div className="modal-content-column">
+                    <a href={solution.discPortal} target="_blank">Partner Discovery Portal</a>    
                 </div>
             </div>
             <div className="modal-content-row modal-content-main-group modal-content_centerall">
