@@ -1,21 +1,38 @@
   //Close the detail view
 import logo from './assets/aws_smile-header-desktop-en-white_59x35.png'
+import TopNavigation from "@cloudscape-design/components/top-navigation";
 
-function TopBar() {
- 
+function TopBar(props) {
+
+    //Return a json object list of resources for the topnav items from props.resources
+    function resourceLinks(resources) {
+        const resourceLinks = [];
+        for (let i = 0; i < resources.length; i++) {
+          resourceLinks.push({ id: resources[i].id, text: resources[i].name, href: resources[i].url, external: true })
+        }
+        return resourceLinks;
+    }
+
     return (
-      
-      <div className="topbar">
-        <img src={logo} alt="logo" className="topbar-image" />
-        <div>
-            <h1 className="topbar-title">
-              APJ Solutions Navigator<br/>
-              <sub><a href="https://aws.highspot.com/spots/66045e3bc0af152ea03fbd50" target="_blank">(SA G5 Solutions Adoption on Highspot)</a></sub>
-            </h1>
-            
-        </div>
-      </div>
-  
+
+      <TopNavigation
+      identity={{
+        href: "#",
+        title: "APJ Solutions Navigator",
+        logo: {
+          src: logo,
+          alt: "AWS"
+        }
+      }}
+      utilities={[
+        {
+          type: "menu-dropdown",
+          text: "AWS / Partner Solutions Resources",
+          items: resourceLinks(props.resources)
+        }
+      ]}
+    />
+        
     )
   }
   

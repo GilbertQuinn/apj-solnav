@@ -9,11 +9,6 @@ import FilterBar from "./FilterBar";
 import SolutionDetail from "./SolutionDetail";
 import axios from 'axios';
 
-//temp data files while we don't have an API yet
-//import data from "./assets/solutiondata"
-//import themedata from "./assets/themedata"
-//import cylinderdata from "./assets/cylinderdata"
-
 const LOCALE = 'en';
 const API_URI = import.meta.env.VITE_API_URL;
 
@@ -34,6 +29,7 @@ function App() {
   //Lookup data
   const [cylinderData, setCylinderData] = React.useState([])
   const [themedata, setThemeData] = React.useState([])
+  const [resourcesData, setResourcesData] = React.useState([])
 
   //Load initial data once
   React.useEffect(() => {
@@ -50,6 +46,10 @@ function App() {
         // Load theme data
         const themeDataResponse = await axios.get(`${API_URI}/themedata`);
         setThemeData(themeDataResponse.data);
+
+        // Load theme data
+        const resourcesDataResponse = await axios.get(`${API_URI}/resourcesdata`);
+        setResourcesData(resourcesDataResponse.data);
   
         // You can continue loading more data here in the same manner
       } catch (error) {
@@ -158,7 +158,7 @@ function App() {
   return (
 
     <I18nProvider locale={LOCALE} messages={[messages]}>
-      <TopBar></TopBar>
+      <TopBar resources={resourcesData}></TopBar>
       <FilterBar onFilterClick={setSelectedFilter} cylinderData={cylinderData} selectedFilter={cylinderFilter} industries={industries} setSelectedIndustries={setSelectedIndustries}></FilterBar>
 
       <ContentLayout>
