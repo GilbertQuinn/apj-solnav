@@ -8,7 +8,11 @@ function TopBar() {
       <div className="topbar">
         <img src={logo} alt="logo" className="topbar-image" />
         <div>
-            <h1 className="topbar-title">APJ Solutions Navigator</h1>
+            <h1 className="topbar-title">
+              APJ Solutions Navigator<br/>
+              <sub><a href="https://aws.highspot.com/spots/66045e3bc0af152ea03fbd50" target="_blank">(SA G5 Solutions Adoption on Highspot)</a></sub>
+            </h1>
+            
         </div>
       </div>
   

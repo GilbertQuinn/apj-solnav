@@ -34,7 +34,7 @@ function SolutionDetail(props) {
     //generate a list of <p> from a simple array list
     function simpleParagraphList(array) {
         return array.map(item => {
-            return <p key={item}>{item}</p>
+            return <p className="p-solution-detail-tightlist" key={item}>{item}</p>
         })
     }
 

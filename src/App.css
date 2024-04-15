@@ -168,3 +168,7 @@ body {
 .modal-content_centerall {
   text-align: center;
 }
+
+.p-solution-detail-tightlist {
+  margin: 0;
+}
