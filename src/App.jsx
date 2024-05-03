@@ -97,7 +97,7 @@ function App() {
   React.useEffect(() => {
     const cylinders = cylinderData.map(cylinder => cylinder.num)
     //setCylinderFilter(cylinders) 
-    setSelectedCylinders(cylinders)
+    setSelectedCylinders([])
   }, [cylinderData]) 
 
   //Open model when card is clicked
@@ -115,13 +115,13 @@ function App() {
   }, [selectedSolutionId, solutions])
 
   //Filter out cards by the selected cylinder
-  function cardInFilter(cardCylinders) {
-    return cardCylinders.some(item => cylinderFilter.includes(item))
-  }
+  //function cardInFilter(cardCylinders) {
+    //return cardCylinders.some(item => cylinderFilter.includes(item))
+  //}
 
   //Filter out cards by selected industry
   function cardInIndustry(cardIndustries) {
-    return (selectedIndustries.length == 0) || (selectedIndustries.some(item => cardIndustries.includes(item.value)))
+    return (selectedIndustries.length === 0) || (selectedIndustries.some(item => cardIndustries.includes(item.value)))
   }
 
   //Filter out the cards by cylinder
