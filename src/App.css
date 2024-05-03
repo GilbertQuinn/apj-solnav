@@ -172,3 +172,10 @@ body {
 .p-solution-detail-tightlist {
   margin: 0;
 }
+
+.form-input {
+  border-radius: 5px;
+  text-indent: 5px;
+  width: 100%;
+  padding: 3px;
+}
