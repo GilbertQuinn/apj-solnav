@@ -19,7 +19,7 @@ import messages from '@cloudscape-design/components/i18n/messages/all.en';
 const LOCALE = 'en';
 const API_URI = import.meta.env.VITE_API_URL;
 
-function App() {
+function App() {  
 
   //Modal State
   const [modalVisible, setModalVisible] = React.useState(false);
