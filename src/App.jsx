@@ -24,7 +24,7 @@ function App() {
   //Modal State
   const [modalVisible, setModalVisible] = React.useState(false);
   const [solutionEditVisible, setSolutionEditVisible] = React.useState(false);
-  const [admin, setAdmin] = React.useState(true);
+  const [admin, setAdmin] = React.useState(false);
 
   //Solutions Data
   const [solutions, setSolutions] = React.useState([])
@@ -233,7 +233,7 @@ function App() {
 
     <I18nProvider locale={LOCALE} messages={[messages]}>
 
-      <Toggle
+      {admin && <Toggle
         onChange={({ detail }) => (
           setAdmin(detail.checked)
         ) 
@@ -241,7 +241,7 @@ function App() {
           checked={admin}
         >
           Admin
-      </Toggle>
+      </Toggle>}
 
       <TopBar resources={resourcesData}></TopBar>
       <FilterBar cylinderData={cylinderData} industries={industries} setSelectedCylinders={setSelectedCylinders} setSelectedIndustries={setSelectedIndustries} setFilterText={setFilterText}></FilterBar>
