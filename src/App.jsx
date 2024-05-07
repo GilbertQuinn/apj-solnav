@@ -276,15 +276,15 @@ function App() {
 
     <I18nProvider locale={LOCALE} messages={[messages]}>
 
-      {showAdmin && <Toggle
+      {showAdmin && <div className="adminRow"><Toggle
         onChange={({ detail }) => (
           setAdmin(detail.checked)
         ) 
           }
           checked={admin}
         >
-          Admin
-      </Toggle>}
+        Admin Mode. Note: If toggled, clicking a card will popup edit screen
+      </Toggle></div>}
 
       <TopBar resources={resourcesData} setAdmin={setAdminLoginVisible}></TopBar>
       <FilterBar cylinderData={cylinderData} industries={industries} setSelectedCylinders={setSelectedCylinders} setSelectedIndustries={setSelectedIndustries} setFilterText={setFilterText} aibuttonClick={aibuttonClick}></FilterBar>

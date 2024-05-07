@@ -8,6 +8,10 @@ body {
   padding: 0rem;
 }
 
+.adminRow {
+  background-color: rgb(250, 180, 180);
+}
+
 .topbar {
   display: flex;
   align-items: center;
