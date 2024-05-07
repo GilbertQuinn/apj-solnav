@@ -11,39 +11,43 @@ body {
 .topbar {
   display: flex;
   align-items: center;
-  height: 50px;
+  gap: 10px;
+  justify-content: space-between;
+  height: 40px;
   background: linear-gradient(90deg, #192534 1.18%, #0f1b2a 100%);
   color: white;
-  padding: 15px;
 }
 
-.topbar-filter {
-  height: 40px;
-  padding: 5px;
-  justify-content: right;
-}
-
-.topbar-filter-columns {
-  padding-left: 3px;
+.topbar-columns {
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 3px;
+}
+
+.topbar-column-left {
+  flex: 1 1 33%;
+  justify-content: left;
+}
+
+.topbar-column-right {
+  flex: 2 1 67%;
+  justify-content: right;
 }
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
 
-  .topbar-filter {
-    height: 100%;
-    justify-content: left;
-    text-align: left;
+  .topbar {
+    flex-direction: column;
+    height: fit-content;
   }
 
-  .topbar-filter-columns {
-    display: block;
-    padding-bottom: 1px;
+  .topbar-columns {
     width: 100%;
+    display: block;
+    flex: 1 1 100%;
   }
+
 }
 
 .topbar-image {
@@ -178,4 +182,14 @@ body {
   text-indent: 5px;
   width: 100%;
   padding: 3px;
+}
+
+.div-aimodel-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.textarea-aimodal-flex {
+  flex: 1;
 }

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState } from "react";
 import axios from 'axios';
+import Cookies from 'js-cookie';
 const API_URI = import.meta.env.VITE_API_URL;
 
 //UI Components
@@ -143,7 +144,13 @@ function SolutionEdit(props) {
     event.preventDefault();
     try {
       const { _id, ...updateData } = formData;
-      const response = await axios.put(`${API_URI}/solutions/${formData._id}`, updateData);
+      const token = Cookies.get('jwt');
+      const response = await axios.put(`${API_URI}/solutions/${formData._id}`, updateData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       props.onUpdate(formData);
       console.log('Solution updated successfully!');
     } catch (error) {

@@ -31,13 +31,17 @@ function FilterBar(props) {
         })
     }*/
 
-    return <div className="topbar topbar-filter">
+    return <div className="topbar">
          
-        <div className="topbar-filter-columns">
-            <div className="topbar-filter-columns">
-                Filter:
-            </div>
-            <div className="topbar-filter-columns">
+    <div className="topbar-columns topbar-column-left">
+        <Button onClick={props.aibuttonClick}>Solution Advisor (Alpha)</Button>
+    </div>       
+    
+    <div className="topbar-columns topbar-column-right">
+        <div className="topbar-columns">
+            Filter:
+        </div>
+        <div className="topbar-columns">
             <Input
                 onChange={({ detail }) => {
                     setValue(detail.value)
@@ -45,49 +49,46 @@ function FilterBar(props) {
                 }}
                 value={value}
                 />
-            </div>
-            <div className="multiselectBox topbar-filter-columns">
-                <Multiselect
-                    selectedOptions={selectedIndustries}
-                    onChange={({ detail }) =>
-                        setSelectedIndustries(detail.selectedOptions)
-                    }
-                    options={
-                        industries.map((industry) => {
-                            return {
-                                label: industry,
-                                value: industry
-                            }
-                        })
-                    }
-                        filteringType="auto"
-                        hideTokens
-                        placeholder="Choose Industries"
-                />
-            </div>
-            
-
-            <div className="multiselectBox topbar-filter-columns">
-                <Multiselect
-                    selectedOptions={selectedCylinders}
-                    onChange={({ detail }) =>
-                        setSelectedCylinders(detail.selectedOptions)
-                    }
-                    options={
-                        cylinders.map((cylinder) => {
-                            return {
-                                label: cylinder.description,
-                                value: cylinder.num
-                            }
-                        })
-                    }
-                        filteringType="auto"
-                        hideTokens
-                        placeholder="Choose Scale Cylinders"
-                />
-            </div>
-
         </div>
+        <div className="topbar-columns">
+            <Multiselect
+                selectedOptions={selectedIndustries}
+                onChange={({ detail }) =>
+                    setSelectedIndustries(detail.selectedOptions)
+                }
+                options={
+                    industries.map((industry) => {
+                        return {
+                            label: industry,
+                            value: industry
+                        }
+                    })
+                }
+                    filteringType="auto"
+                    hideTokens
+                    placeholder="Choose Industries"
+            />
+        </div>
+        <div className="topbar-columns">
+            <Multiselect
+                selectedOptions={selectedCylinders}
+                onChange={({ detail }) =>
+                    setSelectedCylinders(detail.selectedOptions)
+                }
+                options={
+                    cylinders.map((cylinder) => {
+                        return {
+                            label: cylinder.description,
+                            value: cylinder.num
+                        }
+                    })
+                }
+                    filteringType="auto"
+                    hideTokens
+                    placeholder="Choose Scale Cylinders"
+            />
+        </div>
+    </div>
     
     </div>
 }
