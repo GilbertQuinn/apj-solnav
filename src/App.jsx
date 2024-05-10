@@ -2,7 +2,7 @@
 import React from "react"
 import './App.css'
 import axios from 'axios';
-import Cookies from 'js-cookie';
+import { getToken, isTokenExpired } from './CheckTokenExpiry';
 
 //UI Componenets
 import TopBar from "./TopBar";
@@ -60,10 +60,11 @@ function App() {
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('admin')) {
+
       //Check if we have a JWT cookie
-      const token = Cookies.get('jwt');
-      
-      if (token) {
+      const token = getToken();
+
+      if (token && !isTokenExpired(token)) {
         setShowAdmin(true)
         setAdmin(true) 
       } else {
@@ -80,40 +81,39 @@ function App() {
 
   //Load initial data once
   React.useEffect(() => {
-    const fetchDataSequentially = async () => {
-      try {
-        setLoading(true)
+      const fetchDataSequentially = async () => {
+        try {
+          setLoading(true)
 
-        // Load solutions data
-        const solutionsResponse = await axios.get(`${API_URI}/solutions`);
-        setSolutions(solutionsResponse.data);
+          // Load solutions data
+          const solutionsResponse = await axios.get(`${API_URI}/solutions`);
+          setSolutions(solutionsResponse.data);
+    
+          // Load cylinder data
+          const cylinderDataResponse = await axios.get(`${API_URI}/lookups/cylinderdata`);
+          setCylinderData(cylinderDataResponse.data);
+
+          // Load theme data
+          const themeDataResponse = await axios.get(`${API_URI}/lookups/themedata`);
+          setThemeData(themeDataResponse.data);
+
+          // Load theme data
+          const resourcesDataResponse = await axios.get(`${API_URI}/lookups/resourcesdata`);
+          setResourcesData(resourcesDataResponse.data);
+
+          // Load region data
+          const regionDataResponse = await axios.get(`${API_URI}/lookups/regiondata`);
+          setRegionData(regionDataResponse.data);
+    
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false)
+        }
+      };
   
-        // Load cylinder data
-        const cylinderDataResponse = await axios.get(`${API_URI}/lookups/cylinderdata`);
-        setCylinderData(cylinderDataResponse.data);
-
-        // Load theme data
-        const themeDataResponse = await axios.get(`${API_URI}/lookups/themedata`);
-        setThemeData(themeDataResponse.data);
-
-        // Load theme data
-        const resourcesDataResponse = await axios.get(`${API_URI}/lookups/resourcesdata`);
-        setResourcesData(resourcesDataResponse.data);
-
-        // Load region data
-        const regionDataResponse = await axios.get(`${API_URI}/lookups/regiondata`);
-        setRegionData(regionDataResponse.data);
-  
-        // You can continue loading more data here in the same manner
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false)
-      }
-    };
-  
-    fetchDataSequentially();
-  }, []);
+      fetchDataSequentially();
+    }, []);
 
   //Create a unique list of industries from the solutions data
   React.useEffect(() => {
@@ -149,7 +149,7 @@ function App() {
         setModalVisible(true)
       }
     }
-  }, [selectedSolutionId, solutions])
+  }, [selectedSolutionId, solutions, admin])
 
   //Filter out cards by the selected cylinder
   //function cardInFilter(cardCylinders) {

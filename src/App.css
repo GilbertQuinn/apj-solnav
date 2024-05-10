@@ -107,7 +107,7 @@ body {
 }
 
 .image-solution-logo-container {
-  min-height: 75px;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;

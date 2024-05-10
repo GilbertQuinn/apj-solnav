@@ -8,6 +8,7 @@ import Textarea from "@cloudscape-design/components/textarea";
 import Button from "@cloudscape-design/components/button";
 import promptTemplate from "./assets/solutionprompt.js";
 import ReactMarkdown from 'react-markdown';
+import Spinner from "@cloudscape-design/components/spinner";
 
 const API_URI = import.meta.env.VITE_API_URL;
 
@@ -16,6 +17,7 @@ function SolutionAiResponse(props) {
     const solutions = props.solutions
     const [usecase, setUsecase] = React.useState("")
     const [airesponse, setAiresponse] = React.useState("")
+    const [loading, setLoading] = React.useState(false)
 
     function solutionBasicDetail() {
       return solutions.map((solution) => {
@@ -43,12 +45,14 @@ function SolutionAiResponse(props) {
 
       const prompt = aiPrompt();
       setAiresponse("Loading...")
+      setLoading(true)
       
       axios.post(`${API_URI}/solutionai`, {
           prompt: prompt
         })
         .then(response => {
           setAiresponse(response.data)
+          setLoading(false)
         })
         .catch(error => {
           console.error(error)
@@ -89,7 +93,7 @@ function SolutionAiResponse(props) {
           </Header>
           <hr></hr>
 
-          <ReactMarkdown>{airesponse}</ReactMarkdown>
+          {loading && <Spinner />} <ReactMarkdown>{airesponse}</ReactMarkdown>
 
         </Container>
 

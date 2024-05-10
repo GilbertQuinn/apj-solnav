@@ -16,6 +16,7 @@ import Multiselect from "@cloudscape-design/components/multiselect";
 import ExpandableSection from "@cloudscape-design/components/expandable-section";
 import Input from "@cloudscape-design/components/input";
 import Textarea from "@cloudscape-design/components/textarea";
+import Spinner from "@cloudscape-design/components/spinner";
 
 //Custom componenents
 import SolutionEditSubList from "./SolutionEditSubList";
@@ -28,6 +29,9 @@ function SolutionEdit(props) {
   const [selectedRegions, setSelectedRegions] = useState([]);
   const [selectedThemeData, setSelectedThemeData] = useState([]);
   const [selectedIndustries, setSelectedIndustries] = useState([]);
+
+  //Loading state - we should ideally not dulpicate this in the modal an instead use a library, but alas - time
+  const [loading, setLoading] = React.useState(false)
 
   //Update cylinder data
   React.useEffect(() => {
@@ -142,6 +146,7 @@ function SolutionEdit(props) {
   //Handle Submit Event and update the data back to the main state
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true)
     try {
       const { _id, ...updateData } = formData;
       const token = Cookies.get('jwt');
@@ -156,6 +161,8 @@ function SolutionEdit(props) {
     } catch (error) {
       console.error('Update error:', error);
       console.log('Failed to update solution');
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -172,8 +179,8 @@ function SolutionEdit(props) {
       <Form
         actions={
           <SpaceBetween direction="horizontal" size="xs">
-            <Button formAction="none" variant="link">Cancel</Button>
-            <Button variant="primary" onClick={handleSubmit}>Submit</Button>
+            {loading && <Spinner />}
+            <Button variant="primary" onClick={handleSubmit} disabled={loading}>Submit</Button>
           </SpaceBetween>
         }
       >
