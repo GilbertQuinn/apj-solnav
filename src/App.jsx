@@ -63,6 +63,7 @@ function App() {
 
       //Check if we have a JWT cookie
       const token = getToken();
+      console.log(token)
 
       if (token && !isTokenExpired(token)) {
         setShowAdmin(true)
