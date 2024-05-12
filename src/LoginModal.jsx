@@ -34,8 +34,8 @@ function LoginModal(props) {
 
         try {
             const response = await axios.post(`${API_URI}/auth/login`, loginData);
+            console.log(response);
             const token = response.data.token;
-            console.log(token);
             Cookies.set('jwt', token, { expires: 7, secure: true, sameSite: 'strict' });
             console.log('Logged in Succesfully');
             props.activateAdminMode()
