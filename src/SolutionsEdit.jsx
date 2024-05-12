@@ -20,6 +20,7 @@ import Spinner from "@cloudscape-design/components/spinner";
 
 //Custom componenents
 import SolutionEditSubList from "./SolutionEditSubList";
+import SolutionContactEdit from "./SolutionContactEdit";
 
 
 function SolutionEdit(props) {
@@ -310,9 +311,24 @@ function SolutionEdit(props) {
 
             </ExpandableSection>
             
+            <ExpandableSection headerText="AWS Contact">
+            <p>This section specifies the contact/owner for this solution by region.</p>
+ 
+            <SolutionContactEdit
+                handleAddItem={handleAddItem}
+                handleChange={handleChange}
+                handleListChange={handleListChange}
+                handleListItemDelete={handleListItemDelete}
+                subList={formData.awsContact}
+                subListName="awsContact"
+                >
+                </SolutionContactEdit> 
+
+            </ExpandableSection>
+
             <ExpandableSection headerText="Related Documents">
             <p>This section is for any internal external artefacts related to the solutions including (but not limited to) Battle Cards, Blogs, Highspot Content etc.</p>
-
+ 
             <SolutionEditSubList
                 handleAddItem={handleAddItem}
                 handleChange={handleChange}

@@ -23,7 +23,7 @@ function SolutionEditSubList(props) {
             <td><Input type="text" name="name" value={doc.name} onChange={(e) => (props.handleListChange(e,subListName,"name",index))}/></td>
             <td><Input type="text" name="description" value={doc.description} onChange={(e) => (props.handleListChange(e,subListName,"description",index))}/></td>
             <td><Input type="text" name="url" value={doc.url} onChange={(e) => (props.handleListChange(e,subListName,"url",index))}/></td>
-            <td><Button variant="link" onClick={() => {props.handleListItemDelete(subListName,index)}}>Delete</Button></td>
+            <td><Button variant="link" iconName="remove" onClick={() => {props.handleListItemDelete(subListName,index)}}></Button></td>
             </tr>
         ))}
         </tbody>
