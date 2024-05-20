@@ -20,23 +20,7 @@ function SolutionCard(props) {
                 <a href={solution.marketPlaceURL} target="_new">AWS Marketplace</a> |
                 <a href={solution.officialURL} target="_new">Official Site</a>
             </p>
-            <div>
-                <div className={`
-                    ${ cylinderFound("C1", solution.scaleCylinder) ? "card-cylinder-box" : "card-cylinder-box-disabled" }`}>
-                    <h2 className="card-h2">C1</h2></div>
-                <div className={`
-                    ${ cylinderFound("C2", solution.scaleCylinder) ? "card-cylinder-box" : "card-cylinder-box-disabled" }`}>
-                    <h2 className="card-h2">C2</h2></div>
-                <div className={`
-                    ${ cylinderFound("C3", solution.scaleCylinder) ? "card-cylinder-box" : "card-cylinder-box-disabled" }`}>
-                    <h2 className="card-h2">C3</h2></div>
-                <div className={`
-                    ${ cylinderFound("C4", solution.scaleCylinder) ? "card-cylinder-box" : "card-cylinder-box-disabled" }`}>
-                    <h2 className="card-h2">C4</h2></div>
-                <div className={`
-                    ${ cylinderFound("C5", solution.scaleCylinder) ? "card-cylinder-box" : "card-cylinder-box-disabled" }`}>
-                    <h2 className="card-h2">C5</h2></div>
-            </div>
+            
         </div>
   
     )
