@@ -9,6 +9,7 @@ import Button from "@cloudscape-design/components/button";
 import promptTemplate from "./assets/solutionprompt.js";
 import ReactMarkdown from 'react-markdown';
 import Spinner from "@cloudscape-design/components/spinner";
+import Alert from "@cloudscape-design/components/alert";
 
 const API_URI = import.meta.env.VITE_API_URL;
 
@@ -71,6 +72,10 @@ function SolutionAiResponse(props) {
           header={
             <Header variant="h2">
               Customer Use Case
+              <Alert statusIconAriaLabel="Warning" type="warning">
+                This advisor uses Amazon Bedrock. Do not use customer or sensitive data for your use case. Exlude data that is not relevant to Solution guidance.<br/>
+                This information is not saved anywhere and is only used to generate the AI response.
+              </Alert>
             </Header>
           }
         >
