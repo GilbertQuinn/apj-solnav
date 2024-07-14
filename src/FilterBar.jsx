@@ -9,13 +9,8 @@ function FilterBar(props) {
     const cylinders = props.cylinderData
     const industries = props.industries
     const [selectedIndustries,setSelectedIndustries] = React.useState([])
-    const [selectedCylinders,setSelectedCylinders] = React.useState()
     const [value, setValue] = React.useState("");
 
-    //If the selected options change, do a call back to the app on props.setSelectedIndustries with the list of selected industries
-    React.useEffect(() => {
-        props.setSelectedCylinders(selectedCylinders)
-    }, [selectedCylinders])
 
     React.useEffect(() => {
         props.setSelectedIndustries(selectedIndustries)
@@ -69,25 +64,7 @@ function FilterBar(props) {
                     placeholder="Choose Industries"
             />
         </div>
-        <div className="topbar-columns">
-            <Multiselect
-                selectedOptions={selectedCylinders}
-                onChange={({ detail }) =>
-                    setSelectedCylinders(detail.selectedOptions)
-                }
-                options={
-                    cylinders.map((cylinder) => {
-                        return {
-                            label: cylinder.description,
-                            value: cylinder.num
-                        }
-                    })
-                }
-                    filteringType="auto"
-                    hideTokens
-                    placeholder="Choose Scale Cylinders"
-            />
-        </div>
+        
     </div>
     
     </div>
